@@ -2,3 +2,5 @@ language: java
 
 jdk: oraclejdk8
 script: mvn clean install
+notifications:
+  slack: pa165-javateam:EYEPInCf0hhDV9RLQ1WJFP3T
