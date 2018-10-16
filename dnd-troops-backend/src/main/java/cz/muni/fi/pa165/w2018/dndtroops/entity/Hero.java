@@ -100,12 +100,12 @@ public class Hero {
         if (this == o) return true;
         if (!(o instanceof Hero)) return false;
         Hero hero = (Hero) o;
-        return Objects.equals(name, hero.name) &&
-                race == hero.race;
+        return Objects.equals(getName(), hero.getName()) &&
+                getRace() == hero.getRace();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, race);
+        return Objects.hash(getName(), getRace());
     }
 }
