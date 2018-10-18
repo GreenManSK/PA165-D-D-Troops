@@ -68,7 +68,7 @@ public class Troop {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Troop)) return false;
         Troop troop = (Troop) o;
         return Objects.equals(getName(), troop.getName()) &&
                 Objects.equals(getMission(), troop.getMission());
