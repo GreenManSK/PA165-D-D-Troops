@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author Marek Valko <valko.marek@gmail.com>
  */
-@Entity
+@Entity(name = "groups")
 public class Group {
 
     @Id
