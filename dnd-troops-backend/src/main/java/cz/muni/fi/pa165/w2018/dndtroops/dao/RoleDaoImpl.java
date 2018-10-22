@@ -8,6 +8,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+/**
+ * Implementation of RoleDao
+ *
+ * @author Daniel Fecko 445539
+ */
 @Repository
 public class RoleDaoImpl implements RoleDao {
 
