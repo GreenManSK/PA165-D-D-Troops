@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-
 @Repository
 public class RoleDaoImpl implements RoleDao {
 
