@@ -47,6 +47,7 @@ public class RoleDaoTest extends AbstractTestNGSpringContextTests {
         assertEquals(role,roleDao.getById(role.getId()));
     }
 
+    @Test
     public void getAll() {
         Role role1 = createDefaultRole();
         Role role2 = createDefaultRole();
