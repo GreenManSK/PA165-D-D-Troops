@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.w2018.dndtroops.dao;
 
 import cz.muni.fi.pa165.w2018.dndtroops.entity.Group;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +14,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @author Marek Valko <valko.marek@gmail.com>
  */
-
+@Repository
 public class GroupDaoImpl implements GroupDao{
 
     @PersistenceContext
@@ -35,7 +36,7 @@ public class GroupDaoImpl implements GroupDao{
      */
     @Override
     public List<Group> getAll() {
-        return entityManager.createQuery("select g from Group g", Group.class).getResultList();
+        return entityManager.createQuery("select g from groups g", Group.class).getResultList();
     }
 
     /**
