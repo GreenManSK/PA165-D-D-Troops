@@ -31,11 +31,14 @@ public class Group {
 
     public void addHero(Hero hero) {
         heroes.add(hero);
+        hero.setGroup(this);
     }
 
     public void removeHero(Hero hero) {
         heroes.remove(hero);
+        hero.setGroup(null);
     }
+
     public Set<Hero> getHeroes() {
         return Collections.unmodifiableSet(heroes);
     }
