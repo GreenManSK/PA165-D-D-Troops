@@ -80,7 +80,6 @@ public class Hero {
 
     public void setGroup(Group group) {
         this.group = group;
-        group.addHero(this);
     }
 
     public Set<Role> getRoles() {

@@ -113,13 +113,6 @@ public class HeroDaoTest extends AbstractTestNGSpringContextTests {
 		heroDao.create(hero);
 	}
 
-	@Test(expectedExceptions = NullPointerException.class)
-	public void createHeroNullGroup() {
-		Hero hero = createDefaultHero();
-		hero.setGroup(null);
-		heroDao.create(hero);
-	}
-
 	@Test
 	public void createHeroNoGroup() {
 		Hero hero = new Hero();
@@ -185,19 +178,6 @@ public class HeroDaoTest extends AbstractTestNGSpringContextTests {
 
 		Hero modified = createDefaultHero();
 		modified.setRace(null);
-
-		heroDao.update(modified);
-		assertEquals(hero, modified);
-	}
-
-	@Test(expectedExceptions = NullPointerException.class)
-	public void updateHeroGroupNull() {
-		Hero hero = createDefaultHero();
-		em.persist(hero);
-		assertNotNull(em.find(Hero.class, hero.getId()));
-
-		Hero modified = createDefaultHero();
-		modified.setGroup(null);
 
 		heroDao.update(modified);
 		assertEquals(hero, modified);
