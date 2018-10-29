@@ -13,7 +13,6 @@ import java.util.Objects;
 public class HeroSearchDTO {
     private RoleDTO role;
     private Race race;
-    private GroupDTO group;
     private Long fromExperience;
     private Long toExperience;
 
@@ -34,14 +33,6 @@ public class HeroSearchDTO {
 
     public void setRace(Race race) {
         this.race = race;
-    }
-
-    public GroupDTO getGroup() {
-        return group;
-    }
-
-    public void setGroup(GroupDTO group) {
-        this.group = group;
     }
 
     public Long getFromExperience() {
@@ -67,14 +58,13 @@ public class HeroSearchDTO {
         HeroSearchDTO that = (HeroSearchDTO) o;
         return Objects.equals(getRole(), that.getRole()) &&
                 getRace() == that.getRace() &&
-                Objects.equals(getGroup(), that.getGroup()) &&
                 Objects.equals(getFromExperience(), that.getFromExperience()) &&
                 Objects.equals(getToExperience(), that.getToExperience());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(role, race, group, fromExperience, toExperience);
+        return Objects.hash(role, race, fromExperience, toExperience);
     }
 
     @Override
@@ -82,7 +72,6 @@ public class HeroSearchDTO {
         return MoreObjects.toStringHelper(this)
                 .add("role", role)
                 .add("race", race)
-                .add("group", group)
                 .add("fromExperience", fromExperience)
                 .add("toExperience", toExperience)
                 .toString();
