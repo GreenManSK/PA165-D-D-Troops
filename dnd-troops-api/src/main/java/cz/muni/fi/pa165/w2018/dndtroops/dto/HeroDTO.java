@@ -70,7 +70,7 @@ public class HeroDTO {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof HeroDTO)) return false;
         HeroDTO heroDTO = (HeroDTO) o;
         return Objects.equals(getName(), heroDTO.getName()) &&
                 getRace() == heroDTO.getRace();
