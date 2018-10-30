@@ -30,12 +30,11 @@ public interface HeroService {
     List<Hero> getAll();
 
     /**
-     * Creates new hero
+     * Stores new hero
      *
      * @param hero Hero
-     * @return ID of new hero
      */
-    long create(Hero hero);
+    void create(Hero hero);
 
     /**
      * Updates the hero already in the database
@@ -60,5 +59,5 @@ public interface HeroService {
      * @param toExperience   Maximal amount of experience, if {@code null} value is not used in search
      * @return List of heroes that satisfy all conditions
      */
-    List<Hero> search(Role role, Race race, Group group, Long fromExperience, Long toExperience);
+    List<Hero> search(Role role, Race race, Long fromExperience, Long toExperience);
 }
