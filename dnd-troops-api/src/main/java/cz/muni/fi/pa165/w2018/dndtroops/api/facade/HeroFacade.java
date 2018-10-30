@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.w2018.dndtroops.api.facade;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroChangeDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroSearchDTO;
 
@@ -28,17 +29,17 @@ public interface HeroFacade {
     /**
      * Creates new hero
      *
-     * @param heroDTO HeroDTO
+     * @param heroChangeDTO HeroChangeDTO
      * @return ID of new hero
      */
-    long create(HeroDTO heroDTO);
+    long create(HeroChangeDTO heroChangeDTO);
 
     /**
      * Updates the hero specified by the ID of the DAO object
      *
-     * @param heroDTO HeroDTO
+     * @param heroChangeDTO HeroChangeDTO
      */
-    void update(HeroDTO heroDTO);
+    void update(HeroChangeDTO heroChangeDTO);
 
     /**
      * Deletes hero by its ID

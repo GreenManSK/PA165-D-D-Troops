@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.w2018.dndtroops.service;
 
 
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race;

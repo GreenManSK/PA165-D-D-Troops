@@ -1,9 +1,14 @@
 package cz.muni.fi.pa165.w2018.dndtroops.service.configuration;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.GroupDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.RoleDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.DndTroopsApplicationContext;
+import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
+import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
 import cz.muni.fi.pa165.w2018.dndtroops.service.HeroServiceImpl;
+import cz.muni.fi.pa165.w2018.dndtroops.service.facade.HeroFacadeImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -19,7 +24,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(DndTroopsApplicationContext.class)
-@ComponentScan(basePackageClasses = {HeroServiceImpl.class})
+@ComponentScan(basePackageClasses = {HeroServiceImpl.class, HeroFacadeImpl.class})
 public class ServiceConfiguration {
     @Bean
     public Mapper dozer() {
@@ -28,15 +33,12 @@ public class ServiceConfiguration {
         return dozer;
     }
 
-    /**
-     * Custom config for Dozer if needed
-     *
-     * @author nguyen
-     */
     public class DozerCustomConfig extends BeanMappingBuilder {
         @Override
         protected void configure() {
             mapping(Hero.class, HeroDTO.class);
+            mapping(Role.class, RoleDTO.class);
+            mapping(Group.class, GroupDTO.class);
         }
     }
 }
