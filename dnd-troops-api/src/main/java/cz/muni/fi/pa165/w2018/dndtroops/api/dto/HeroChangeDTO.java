@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.w2018.dndtroops.api.dto;
 import com.google.common.base.MoreObjects;
 import cz.muni.fi.pa165.w2018.dndtroops.api.enums.Race;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,9 +15,17 @@ import java.util.Objects;
  */
 public class HeroChangeDTO {
     private Long id;
+
+    @NotNull
     private String name;
+
+    @NotNull
+    @Min(0)
     private Long experience;
+
+    @NotNull
     private Race race;
+
     private Long groupId;
     private List<Long> roleIds;
 
