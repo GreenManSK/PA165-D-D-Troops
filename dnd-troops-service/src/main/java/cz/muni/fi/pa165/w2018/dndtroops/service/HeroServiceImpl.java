@@ -18,12 +18,9 @@ import java.util.stream.Collectors;
 @Service
 public class HeroServiceImpl implements HeroService {
 
-    private final HeroDao heroDao;
-
     @Inject
-    public HeroServiceImpl(HeroDao heroDao) {
-        this.heroDao = heroDao;
-    }
+    private HeroDao heroDao;
+
 
     /**
      * Retrieve hero by the id
