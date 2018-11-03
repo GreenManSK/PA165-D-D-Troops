@@ -26,21 +26,17 @@ import java.util.List;
 @Transactional
 public class HeroFacadeImpl implements HeroFacade {
 
-    private final HeroService heroService;
-
-    private final GroupService groupService;
-
-    private final RoleService roleService;
-
-    private final BeanMappingService mapper;
+    @Inject
+    private HeroService heroService;
 
     @Inject
-    public HeroFacadeImpl(HeroService heroService, GroupService groupService, RoleService roleService, BeanMappingService mapper) {
-        this.heroService = heroService;
-        this.groupService = groupService;
-        this.roleService = roleService;
-        this.mapper = mapper;
-    }
+    private GroupService groupService;
+
+    @Inject
+    private RoleService roleService;
+
+    @Inject
+    private BeanMappingService mapper;
 
     /**
      * Retrieve hero by the id
