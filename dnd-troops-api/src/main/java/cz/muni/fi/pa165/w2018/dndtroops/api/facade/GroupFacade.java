@@ -33,10 +33,10 @@ public interface GroupFacade {
     /**
      * Returns groups where no hero has any of the given roles
      *
-     * @param roles to be omitted
+     * @param roles ids of roles to be omitted
      * @return List of groups without given roles
      */
-    List<GroupDTO> getGroupsWithoutRoles(List<String> roles);
+    List<GroupDTO> getGroupsWithoutRoles(List<Long> roles);
 
     /**
      * Retrieve all groups
@@ -79,16 +79,16 @@ public interface GroupFacade {
      * Adds hero to group
      *
      * @param groupId id of the group
-     * @param hero to be added
+     * @param heroId if of the hero to be added
      */
-    void addHero(long groupId, HeroDTO hero);
+    void addHero(long groupId, long heroId);
 
     /**
      * Removes hero from group
      *
      * @param groupId id of the group
-     * @param hero to be removed
+     * @param heroId id of the hero to be removed
      */
-    void removeHero(long groupId, HeroDTO hero);
+    void removeHero(long groupId, long heroId);
 
 }
