@@ -1,18 +1,20 @@
 package cz.muni.fi.pa165.w2018.dndtroops.api.dto;
 
-import java.util.List;
+
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * Data Transfer Object for Group
+ * Data Transfer Object for changes in Group
  *
  * @author Dusan Hetlerovic
  */
-public class GroupDTO {
+public class GroupChangeDTO {
 
     private Long id;
+
+    @NotNull
     private String name;
-    private List<HeroDTO> heroes;
 
     public Long getId() {
         return id;
@@ -30,20 +32,12 @@ public class GroupDTO {
         this.name = name;
     }
 
-    public List<HeroDTO> getHeroes() {
-        return heroes;
-    }
-
-    public void setHeroes(List<HeroDTO> heroes) {
-        this.heroes = heroes;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GroupDTO groupDTO = (GroupDTO) o;
-        return Objects.equals(getName(), groupDTO.getName());
+        GroupChangeDTO that = (GroupChangeDTO) o;
+        return Objects.equals(getName(), that.getName());
     }
 
     @Override
@@ -53,10 +47,9 @@ public class GroupDTO {
 
     @Override
     public String toString() {
-        return "GroupDTO{" +
+        return "GroupChangeDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", heroes=" + heroes +
                 '}';
     }
 }
