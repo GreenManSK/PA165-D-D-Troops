@@ -12,7 +12,6 @@ public class GroupDTO {
 
     private Long id;
     private String name;
-    private List<HeroDTO> heroes;
 
     public Long getId() {
         return id;
@@ -30,18 +29,10 @@ public class GroupDTO {
         this.name = name;
     }
 
-    public List<HeroDTO> getHeroes() {
-        return heroes;
-    }
-
-    public void setHeroes(List<HeroDTO> heroes) {
-        this.heroes = heroes;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof GroupDTO)) return false;
         GroupDTO groupDTO = (GroupDTO) o;
         return Objects.equals(getName(), groupDTO.getName());
     }
@@ -56,7 +47,6 @@ public class GroupDTO {
         return "GroupDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", heroes=" + heroes +
                 '}';
     }
 }
