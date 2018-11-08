@@ -88,7 +88,7 @@ public class HeroDTO {
                 .add("name", name)
                 .add("experience", experience)
                 .add("race", race)
-                .add("group", group)
+                .add("group", group.getName())
                 .add("roles", roles)
                 .toString();
     }
