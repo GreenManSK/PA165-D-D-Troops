@@ -68,7 +68,7 @@ public class RoleDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    private void getAllEmpty() {
+    public void getAllEmpty() {
         assertTrue(roleDao.getAll().isEmpty());
     }
 
