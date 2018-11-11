@@ -47,4 +47,11 @@ public interface RoleDao {
 	 */
 	void delete(Role role);
 
+	/**
+	 * Return Role by name
+	 * @param name of the role
+	 * @return Role or null if not found
+	 */
+	Role getByName(String name);
+
 }
