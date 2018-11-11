@@ -54,7 +54,7 @@ public class RoleFacadeImpl implements RoleFacade {
 
     @Override
     public RoleDTO getByName(String name) {
-        return null;
+        return mapper.mapTo(roleService.getByName(name),RoleDTO.class);
     }
 
 
