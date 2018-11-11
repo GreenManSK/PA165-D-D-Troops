@@ -5,7 +5,6 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.dto.RoleDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.facade.RoleFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
 import cz.muni.fi.pa165.w2018.dndtroops.service.BeanMappingService;
-import cz.muni.fi.pa165.w2018.dndtroops.service.HeroService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.RoleService;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +12,11 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * RoleFacade Implementation
+ *
+ * @author Marek Valko
+ */
 @Service
 @Transactional
 public class RoleFacadeImpl implements RoleFacade {
