@@ -47,7 +47,7 @@ public interface RoleFacade {
     /**
      * Returns Role by name
      * @param name Name of the Role
-     * @return RoleDTO
+     * @return RoleDTO or null if not found
      */
     RoleDTO getByName(String name);
 }
