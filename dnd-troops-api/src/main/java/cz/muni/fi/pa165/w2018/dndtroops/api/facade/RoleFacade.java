@@ -45,9 +45,9 @@ public interface RoleFacade {
     void delete(long id);
 
     /**
-     * Returns all Roles by name
+     * Returns Role by name
      * @param name Name of the Role
-     * @return List of RoleDTOs
+     * @return RoleDTO
      */
-    List<RoleDTO> getAllByName(String name);
+    RoleDTO getByName(String name);
 }
