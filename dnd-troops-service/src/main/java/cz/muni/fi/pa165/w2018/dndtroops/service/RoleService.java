@@ -42,4 +42,11 @@ public interface RoleService {
      */
     void delete(long id);
 
+    /**
+     * Return Role by its name
+     * @param name of the Role
+     * @return Role or null if not found
+     */
+    Role getByName(String name);
+
 }
