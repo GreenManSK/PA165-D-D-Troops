@@ -138,6 +138,31 @@ public class RoleDaoTest extends AbstractTestNGSpringContextTests {
         roleDao.delete(null);
     }
 
+    @Test
+    public void getRoleByName() {
+        Role role = createDefaultRole();
+        em.persist(role);
+        assertNotNull(em.find(Role.class, role.getId()));
+
+        Role role2 = roleDao.getByName("magician");
+        assertEquals(role,role2);
+
+        Role role3 = roleDao.getByName("magic");
+        assertNull(role3);
+
+        Role role4 = roleDao.getByName("magiciana");
+        assertNull(role4);
+    }
+    @Test
+    public void getRoleByNameFromEmpty() {
+        assertNull(roleDao.getByName("random"));
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void getRoleByNullName() {
+        roleDao.getByName(null);
+    }
+
 
     private Role createDefaultRole() {
         Role role = new Role();

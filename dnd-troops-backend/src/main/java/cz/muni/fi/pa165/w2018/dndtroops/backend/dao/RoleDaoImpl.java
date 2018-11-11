@@ -73,4 +73,14 @@ public class RoleDaoImpl implements RoleDao {
 		checkNotNull(role);
 		entityManager.remove(role);
 	}
+
+	@Override
+	public Role getByName(String name) {
+		checkNotNull(name);
+		List<Role> roles = entityManager.createQuery("select r from Role r where r.name like :name", Role.class).setParameter("name", name).getResultList();
+		if (!roles.isEmpty()) {
+			return roles.get(0);
+		}
+		return null;
+	}
 }
