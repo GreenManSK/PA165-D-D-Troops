@@ -27,11 +27,6 @@ public class RoleFacadeImpl implements RoleFacade {
     @Inject
     private BeanMappingService mapper;
 
-//    private Role roleChangeDTOToRole(RoleChangeDTO roleChangeDTO) {
-//        Role role = mapper.mapTo(roleChangeDTO, Role.class);
-//        role.
-//    }
-
     @Override
     public RoleDTO getById(long id) {return mapper.mapTo(roleService.getById(id), RoleDTO.class);}
 
