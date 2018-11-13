@@ -73,6 +73,62 @@ public class TroopDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void getAllByNameEmpty() {
+        assertTrue(troopDao.getAllByName("n").isEmpty());
+    }
+
+    @Test
+    public void getAllByNameNull(){
+        assertTrue(troopDao.getAllByName(null).isEmpty());
+    }
+
+    @Test
+    public void getAllByName(){
+        Troop troop1 = createDefaultTroop();
+        Troop troop2 = createDefaultTroop();
+        troop2.setName("Goblin");
+
+        em.persist(troop1);
+        em.persist(troop2);
+
+        Troop expect2 = createDefaultTroop();
+        expect2.setName("Goblin");
+
+        List<Troop> result = troopDao.getAllByName("Goblin");
+        assertEquals(1, result.size());
+        assertTrue(result.contains(expect2));
+    }
+
+    @Test
+    public void getAllByMissionEmpty() {
+        assertTrue(troopDao.getAllByMission("m").isEmpty());
+    }
+
+    @Test
+    public void getAllByMissionNull(){
+        assertTrue(troopDao.getAllByMission(null).isEmpty());
+    }
+
+    @Test
+    public void getAllByMission(){
+        Troop troop1 = createDefaultTroop();
+        Troop troop2 = createDefaultTroop();
+        troop2.setName("Goblin");
+        troop2.setMission("Kick ass");
+
+        em.persist(troop1);
+        em.persist(troop2);
+
+        Troop expect2 = createDefaultTroop();
+        expect2.setName("Goblin");
+        expect2.setMission("Kick ass");
+
+        List<Troop> result = troopDao.getAllByMission("Kick ass");
+        assertEquals(1, result.size());
+        assertTrue(result.contains(expect2));
+    }
+
+    @Test
     public void createTroop() {
         Troop troop = createDefaultTroop();
         troopDao.create(troop);

@@ -27,6 +27,22 @@ public interface TroopDao {
     List<Troop> getAll();
 
     /**
+     * Gets Troops according to Name
+     *
+     * @param name String
+     * @return List<Troop>
+     */
+    List<Troop> getAllByName(String name);
+
+    /**
+     * Gets Troops according to mission
+     *
+     * @param mission String
+     * @return List<Troop>
+     */
+    List<Troop> getAllByMission(String mission);
+
+    /**
      * Stores new troop
      * @param troop to be created
      * @throws NullPointerException if the {@code troop} is {@code null}

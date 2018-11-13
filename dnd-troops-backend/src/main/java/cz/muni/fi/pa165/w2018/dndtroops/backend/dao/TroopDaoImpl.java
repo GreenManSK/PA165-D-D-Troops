@@ -43,6 +43,28 @@ public class TroopDaoImpl implements TroopDao {
     }
 
     /**
+     * Gets Troops according to Name
+     *
+     * @param name String
+     * @return List<Troop>
+     */
+    @Override
+    public List<Troop> getAllByName(String name) {
+        return entityManager.createQuery("SELECT t FROM Troop t WHERE t.name = :name", Troop.class).setParameter("name", name).getResultList();
+    }
+
+    /**
+     * Gets Troops according to mission
+     *
+     * @param mission String
+     * @return List<Troop>
+     */
+    @Override
+    public List<Troop> getAllByMission(String mission) {
+        return entityManager.createQuery("SELECT t FROM Troop t WHERE t.mission = :mission", Troop.class).setParameter("mission", mission).getResultList();
+    }
+
+    /**
      * Stores new troop
      *
      * @param troop to be created
