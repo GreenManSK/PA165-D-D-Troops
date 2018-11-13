@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -77,10 +78,11 @@ public class RoleDaoImpl implements RoleDao {
 	@Override
 	public Role getByName(String name) {
 		checkNotNull(name);
-		List<Role> roles = entityManager.createQuery("select r from Role r where r.name like :name", Role.class).setParameter("name", name).getResultList();
-		if (!roles.isEmpty()) {
-			return roles.get(0);
+		try {
+			return entityManager.createQuery("select r from Role r where r.name = :name", Role.class).setParameter("name", name).getSingleResult();
 		}
-		return null;
+		catch (NoResultException e) {
+			return null;
+		}
 	}
 }
