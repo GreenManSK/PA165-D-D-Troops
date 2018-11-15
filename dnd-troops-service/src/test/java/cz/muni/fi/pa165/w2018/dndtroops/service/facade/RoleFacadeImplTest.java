@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 import static org.testng.Assert.*;
 
 /**
- * Class RoleFacadeImplTest
+ * Tests for RoleFacade implementation
  *
  * @author Lukáš Kurčík <lukas.kurcik@gmail.com>
  */
