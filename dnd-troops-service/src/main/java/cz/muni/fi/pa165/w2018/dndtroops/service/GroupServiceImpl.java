@@ -34,11 +34,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group getByName(String name) {
-        List<Group> groups = groupDao.getAll()
-                .stream()
-                .filter(group -> group.getName().equals(name))
-                .collect(Collectors.toList());
-        return (groups.isEmpty() ? null : groups.get(0));
+        return groupDao.getByName(name);
     }
 
     @Override
@@ -69,7 +65,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public void update(Group group) {
-        groupDao.create(group);
+        groupDao.update(group);
     }
 
     @Override

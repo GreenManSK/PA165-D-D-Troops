@@ -53,14 +53,14 @@ public class GroupFacadeImpl implements GroupFacade {
 
     @Override
     public long create(GroupChangeDTO group) {
-        Group g = groupChangeDTOToGroup(group);
+        Group g = mapper.mapTo(group, Group.class);
         groupService.create(g);
         return g.getId();
     }
 
     @Override
     public void update(GroupChangeDTO group) {
-        Group g = groupChangeDTOToGroup(group);
+        Group g = mapper.mapTo(group, Group.class);
         groupService.update(g);
     }
 
@@ -77,22 +77,6 @@ public class GroupFacadeImpl implements GroupFacade {
     @Override
     public void removeHero(long groupId, long heroId) {
         groupService.removeHero(groupId, heroId);
-    }
-
-
-    /**
-     * Helper function to add heroes to the mapped Group object
-     *
-     * @param group to be mapped
-     * @return mapped Group object
-     */
-    private Group groupChangeDTOToGroup(GroupChangeDTO group) {
-        Group g = mapper.mapTo(group, Group.class);
-        List<Hero> heroes = groupService.getHeroesFromGroup(g.getId());
-        for (Hero h : heroes) {
-            g.addHero(h);
-        }
-        return g;
     }
 
 }

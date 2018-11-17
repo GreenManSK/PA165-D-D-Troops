@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -28,6 +29,23 @@ public class GroupDaoImpl implements GroupDao{
     @Override
     public Group getById(long id) {
         return entityManager.find(Group.class, id);
+    }
+
+    /**
+     * Finds group by name
+     *
+     * @param name of the group
+     * @return group or null, if there is no group with given id
+     */
+    @Override
+    public Group getByName(String name) {
+        checkNotNull(name);
+        try {
+            return entityManager.createQuery("select g from groups g where g.name = :name", Group.class).setParameter("name", name).getSingleResult();
+        }
+        catch (NoResultException e) {
+            return null;
+        }
     }
 
     /**
