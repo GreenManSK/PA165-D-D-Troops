@@ -73,6 +73,25 @@ public class GroupDaoTest extends AbstractTestNGSpringContextTests {
         assertTrue(groupDao.getAll().isEmpty());
     }
 
+    @Test
+    public void getGroupByName() {
+        Group g = createDefaultGroup();
+        assertNull(groupDao.getByName(g.getName()));
+
+        em.persist(g);
+        assertNotNull(em.find(Group.class, g.getId()));
+
+        assertEquals(g,groupDao.getByName(g.getName()));
+        assertNull(groupDao.getByName(g.getName().concat(" Mr. Farquaad!")));
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void getGroupByNullName() {
+        groupDao.getByName(null);
+    }
+
+
+
 
     /*
         Tests for create

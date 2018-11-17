@@ -20,6 +20,13 @@ public interface GroupDao {
     Group getById(long id);
 
     /**
+     * Finds group by name
+     * @param name of the group
+     * @return group or null, if there is no group with given id
+     */
+    Group getByName(String name);
+
+    /**
      * Finds all Groups
      * @return List of all groups
      */
