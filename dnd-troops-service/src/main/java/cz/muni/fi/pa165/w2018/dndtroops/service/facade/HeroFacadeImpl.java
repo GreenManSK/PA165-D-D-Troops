@@ -91,7 +91,7 @@ public class HeroFacadeImpl implements HeroFacade {
      */
     private Hero heroChangeDTOToHero(HeroChangeDTO heroChangeDTO) {
         Hero hero = mapper.mapTo(heroChangeDTO, Hero.class);
-        hero.setGroup(groupService.getById(heroChangeDTO.getGroupId()));
+        hero.setGroup(heroChangeDTO.getGroupId() != null ? groupService.getById(heroChangeDTO.getGroupId()): null);
         for (Long id : heroChangeDTO.getRoleIds()) {
             Role role = roleService.getById(id);
             if (role != null) {

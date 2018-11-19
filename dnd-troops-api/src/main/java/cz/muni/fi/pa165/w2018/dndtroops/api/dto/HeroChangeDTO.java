@@ -27,6 +27,8 @@ public class HeroChangeDTO {
     private Race race;
 
     private Long groupId;
+
+    @NotNull
     private List<Long> roleIds;
 
     public Long getId() {
