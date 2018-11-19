@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.w2018.dndtroops.service;
 
 import cz.muni.fi.pa165.w2018.dndtroops.backend.dao.TroopDao;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Troop;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  *
  * @author Daniel Fecko 445539
  */
+@Service
 public class TroopServiceImpl implements TroopService{
 
 	@Inject
@@ -87,6 +89,9 @@ public class TroopServiceImpl implements TroopService{
 	 */
 	@Override
 	public void delete(long id) {
-		troopDao.remove(getById(id));
+		Troop troop = troopDao.getById(id);
+		if (troop != null) {
+			troopDao.remove(troop);
+		}
 	}
 }
