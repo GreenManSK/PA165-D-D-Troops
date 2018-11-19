@@ -8,7 +8,6 @@ import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race;
 import cz.muni.fi.pa165.w2018.dndtroops.service.configuration.ServiceConfiguration;
 import javax.inject.Inject;
-import javax.validation.constraints.Null;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
