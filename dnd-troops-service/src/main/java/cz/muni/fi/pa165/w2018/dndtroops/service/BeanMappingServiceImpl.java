@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.w2018.dndtroops.service;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.enums.Race;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,16 @@ public class BeanMappingServiceImpl implements BeanMappingService {
         if (u == null)
             return null;
         return dozer.map(u, mapToClass);
+    }
+
+    @Override
+    public Race mapTo(cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race race, Class<Race> mapToClass) {
+        return Race.valueOf(race.toString());
+    }
+
+    @Override
+    public cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race mapTo(Race race, Class<cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race> mapToClass) {
+        return cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race.valueOf(race.toString());
     }
 
     @Override
