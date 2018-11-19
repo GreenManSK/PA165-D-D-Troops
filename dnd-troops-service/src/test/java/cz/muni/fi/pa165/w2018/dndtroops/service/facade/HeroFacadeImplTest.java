@@ -10,7 +10,9 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.facade.HeroFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
 import cz.muni.fi.pa165.w2018.dndtroops.service.BeanMappingService;
+import cz.muni.fi.pa165.w2018.dndtroops.service.GroupService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.HeroService;
+import cz.muni.fi.pa165.w2018.dndtroops.service.RoleService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.configuration.ServiceConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -41,6 +43,12 @@ import static org.testng.Assert.*;
 public class HeroFacadeImplTest extends AbstractTestNGSpringContextTests {
     @Mock
     private HeroService heroService;
+
+    @Mock
+    private GroupService groupService;
+
+    @Mock
+    private RoleService roleService;
 
     @Spy
     @Inject
