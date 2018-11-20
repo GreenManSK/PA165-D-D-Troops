@@ -6,8 +6,10 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.facade.TroopFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Troop;
 import cz.muni.fi.pa165.w2018.dndtroops.service.BeanMappingService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.TroopService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -15,6 +17,8 @@ import java.util.List;
  *
  * @author Daniel Fecko 445539
  */
+@Service
+@Transactional
 public class TroopFacadeImpl implements TroopFacade {
 
 	@Inject

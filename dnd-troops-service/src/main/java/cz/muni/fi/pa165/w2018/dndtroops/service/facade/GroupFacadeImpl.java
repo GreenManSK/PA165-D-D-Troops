@@ -5,11 +5,12 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.dto.GroupDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.facade.GroupFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
 import cz.muni.fi.pa165.w2018.dndtroops.service.BeanMappingService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.GroupService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,6 +18,8 @@ import java.util.List;
  *
  * @author Dusan Hetlerovic
  */
+@Service
+@Transactional
 public class GroupFacadeImpl implements GroupFacade {
 
     @Inject
