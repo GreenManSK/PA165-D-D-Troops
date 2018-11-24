@@ -89,6 +89,11 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -98,5 +103,6 @@
         <module>dnd-troops-api</module>
         <module>dnd-troops-service</module>
         <module>dnd-troops-sample-data</module>
+        <module>dnd-troops-rest</module>
     </modules>
 </project>
