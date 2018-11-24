@@ -97,5 +97,6 @@
         <module>dnd-troops-backend</module>
         <module>dnd-troops-api</module>
         <module>dnd-troops-service</module>
+        <module>dnd-troops-sample-data</module>
     </modules>
 </project>
