@@ -1,3 +1,5 @@
+package cz.muni.fi.pa165.w2018.dndtroops.sampledata;
+
 import cz.muni.fi.pa165.w2018.dndtroops.service.configuration.ServiceConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
