@@ -10,6 +10,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Abstract controller as base for all other controllers
  *
@@ -39,7 +41,6 @@ public abstract class BaseController {
     @ModelAttribute("isAuthenticated")
     public boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication);
         if (authentication == null)
             return false;
         return authentication.isAuthenticated() &&
@@ -57,5 +58,15 @@ public abstract class BaseController {
         if (authentication == null)
             return null;
         return authentication.getName();
+    }
+
+    @ModelAttribute("isAdmin")
+    public boolean isAdmin(HttpServletRequest request) {
+        return request.isUserInRole("ADMIN");
+    }
+
+    @ModelAttribute("isUser")
+    public boolean isUser(HttpServletRequest request) {
+        return request.isUserInRole("USER");
     }
 }
