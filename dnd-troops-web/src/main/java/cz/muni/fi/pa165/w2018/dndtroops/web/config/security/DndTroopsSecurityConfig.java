@@ -38,8 +38,7 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login*").permitAll()
-                .antMatchers("/test").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_LOGIN + "*").permitAll()
                 .anyRequest().authenticated()
 
                 // Login
@@ -49,7 +48,7 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl(WebUris.URL_LOGIN)
                 .failureUrl(WebUris.URL_LOGIN + "?error=true")
                 .usernameParameter("user_login").passwordParameter("user_password")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl(WebUris.URL_HOME, true)
                 .permitAll()
 
                 // Logout
@@ -58,8 +57,6 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl(WebUris.URL_LOGOUT)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
-
-        //TODO: Access denied
     }
 
     @Bean

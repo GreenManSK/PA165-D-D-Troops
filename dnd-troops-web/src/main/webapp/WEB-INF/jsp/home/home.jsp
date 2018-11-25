@@ -7,9 +7,10 @@
 
 
 <fmt:message var="title" key="navigation.project"/>
-<my:pagetemplate title="${title}">
+<my:admintemplate title="${title}">
 <jsp:attribute name="body">
-Hello
+
+    <p><fmt:message key="home.description"/></p>
 
 </jsp:attribute>
-</my:pagetemplate>
+</my:admintemplate>
