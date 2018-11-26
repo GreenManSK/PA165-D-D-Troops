@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.w2018.dndtroops.api.dto;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,7 @@ public class TroopChangeDTO {
 	private Long id;
 
 	@NotNull
+	@Size(min = 1)
 	private String name;
 
 	@NotNull
