@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Lukáš Kurčík <lukas.kurcik@gmail.com>
  */
 public class HeroSearchDTO {
-    private RoleDTO role;
+    private Long roleId;
     private Race race;
     private Long fromExperience;
     private Long toExperience;
@@ -19,12 +19,12 @@ public class HeroSearchDTO {
     public HeroSearchDTO() {
     }
 
-    public RoleDTO getRole() {
-        return role;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRole(RoleDTO role) {
-        this.role = role;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public Race getRace() {
@@ -56,7 +56,7 @@ public class HeroSearchDTO {
         if (this == o) return true;
         if (!(o instanceof HeroSearchDTO)) return false;
         HeroSearchDTO that = (HeroSearchDTO) o;
-        return Objects.equals(getRole(), that.getRole()) &&
+        return Objects.equals(getRoleId(), that.getRoleId()) &&
                 getRace() == that.getRace() &&
                 Objects.equals(getFromExperience(), that.getFromExperience()) &&
                 Objects.equals(getToExperience(), that.getToExperience());
@@ -64,13 +64,13 @@ public class HeroSearchDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(role, race, fromExperience, toExperience);
+        return Objects.hash(roleId, race, fromExperience, toExperience);
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("role", role)
+                .add("roleId", roleId)
                 .add("race", race)
                 .add("fromExperience", fromExperience)
                 .add("toExperience", toExperience)

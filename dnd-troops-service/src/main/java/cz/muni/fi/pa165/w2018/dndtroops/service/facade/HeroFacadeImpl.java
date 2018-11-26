@@ -120,7 +120,7 @@ public class HeroFacadeImpl implements HeroFacade {
     @Override
     public List<HeroDTO> search(HeroSearchDTO searchDTO) {
         return mapper.mapTo(heroService.search(
-                mapper.mapTo(searchDTO.getRole(), Role.class),
+                searchDTO.getRoleId() != null ? roleService.getById(searchDTO.getRoleId()) : null,
                 mapper.mapTo(searchDTO.getRace(), Race.class),
                 searchDTO.getFromExperience(),
                 searchDTO.getToExperience()), HeroDTO.class);
