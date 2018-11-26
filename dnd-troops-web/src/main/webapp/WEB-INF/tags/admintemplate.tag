@@ -77,7 +77,7 @@
             </li>
             <c:if test="${isAdmin}">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/heroes/all">
+                <a class="nav-link" href="${pageContext.request.contextPath}/hero/all">
                     <i class="fas fa-fw fa-users"></i>
                     <span>
                         <f:message key="navigation.heroes"/>
@@ -107,6 +107,11 @@
     <div id="content-wrapper">
 
         <div class="container-fluid">
+            <c:if test="${not empty flashMessage}">
+                <div class="alert ${flashMessage.getType().getCssClass()}" role="alert">
+                    <f:message key="${flashMessage.getText()}"/>
+                </div>
+            </c:if>
             <jsp:invoke fragment="body"/>
         </div>
         <!-- /.container-fluid -->

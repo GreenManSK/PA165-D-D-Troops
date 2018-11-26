@@ -38,7 +38,18 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+
+                //Hero controller
+                .antMatchers(WebUris.URL_HERO + "/").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_HERO + "/all").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_HERO + "/create").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_HERO + "/*/update").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_HERO + "/*/delete").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_HERO + "/**").hasAnyRole("ADMIN", "USER")
+
+                // Others
                 .antMatchers(WebUris.URL_LOGIN + "*").permitAll()
+                .antMatchers(WebUris.NOT_FOUND).permitAll()
                 .anyRequest().authenticated()
 
                 // Login
