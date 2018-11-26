@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.enums.Race;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ public class HeroChangeDTO {
     private Long id;
 
     @NotNull
+    @Size(min = 1)
     private String name;
 
     @NotNull
