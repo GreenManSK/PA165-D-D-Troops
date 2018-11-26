@@ -11,6 +11,7 @@ public class WebUris {
     public static final String URL_LOGIN = "/login";
     public static final String URL_LOGOUT = "/logout";
 
+    public static final String NOT_FOUND = "/404";
 
     public static final String URL_HERO = "/hero";
     public static final String URL_GROUP = "/group";
