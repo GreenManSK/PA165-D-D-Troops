@@ -34,11 +34,15 @@ public class BeanMappingServiceImpl implements BeanMappingService {
 
     @Override
     public Race mapTo(cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race race, Class<Race> mapToClass) {
+        if (race == null)
+            return null;
         return Race.valueOf(race.toString());
     }
 
     @Override
     public cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race mapTo(Race race, Class<cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race> mapToClass) {
+        if (race == null)
+            return null;
         return cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race.valueOf(race.toString());
     }
 
