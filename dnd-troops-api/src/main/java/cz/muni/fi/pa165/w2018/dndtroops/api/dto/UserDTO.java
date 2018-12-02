@@ -19,7 +19,7 @@ public class UserDTO {
     private String login;
 
     @NotNull
-    private UserType tyoe;
+    private UserType type;
 
     @NotNull
     private String passwordHash;
@@ -35,13 +35,13 @@ public class UserDTO {
         if (!(o instanceof UserDTO)) return false;
         UserDTO userDTO = (UserDTO) o;
         return Objects.equals(getLogin(), userDTO.getLogin()) &&
-                getTyoe() == userDTO.getTyoe() &&
+                getType() == userDTO.getType() &&
                 Objects.equals(getPasswordHash(), userDTO.getPasswordHash());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLogin(), getTyoe(), getPasswordHash());
+        return Objects.hash(getLogin(), getType(), getPasswordHash());
     }
 
     public String getLogin() {
@@ -52,12 +52,12 @@ public class UserDTO {
         this.login = login;
     }
 
-    public UserType getTyoe() {
-        return tyoe;
+    public UserType getType() {
+        return type;
     }
 
-    public void setTyoe(UserType tyoe) {
-        this.tyoe = tyoe;
+    public void setType(UserType type) {
+        this.type = type;
     }
 
     public String getPasswordHash() {
@@ -90,7 +90,7 @@ public class UserDTO {
         return "UserDTO{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", tyoe=" + tyoe +
+                ", type=" + type +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", hero='"+ name +'\'' +
                 '}';
