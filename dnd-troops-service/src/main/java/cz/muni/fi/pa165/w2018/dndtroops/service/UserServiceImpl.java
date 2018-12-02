@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.w2018.dndtroops.service;
 
 import cz.muni.fi.pa165.w2018.dndtroops.backend.dao.UserDao;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.User;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -15,6 +16,7 @@ import java.util.List;
  *
  * @author Marek Valko
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Inject

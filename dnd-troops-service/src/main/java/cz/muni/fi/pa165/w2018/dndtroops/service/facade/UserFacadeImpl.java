@@ -6,10 +6,14 @@ import cz.muni.fi.pa165.w2018.dndtroops.api.facade.UserFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.User;
 import cz.muni.fi.pa165.w2018.dndtroops.service.BeanMappingService;
 import cz.muni.fi.pa165.w2018.dndtroops.service.UserService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class UserFacadeImpl implements UserFacade{
     @Inject
     private UserService userService;
