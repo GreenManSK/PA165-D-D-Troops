@@ -108,10 +108,24 @@ public class UserFacadeImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() {
-        when(userService.getByLogin(user.getLogin())).thenReturn(user);
         UserDTO userDTO = beanMappingService.mapTo(user2, UserDTO.class);
+        when(userService.getByLogin(userDTO.getLogin())).thenReturn(user);
         userFacade.createUser(userDTO, password);
-        verify(userService).createUser(any(User.class),password);
+        verify(userService).createUser(any(User.class),eq(password));
+    }
+
+    @Test
+    public void update() {
+        UserDTO userDTO = beanMappingService.mapTo(user, UserDTO.class);
+        userDTO.setLogin("newlogin");
+        userFacade.update(userDTO);
+        verify(userService).update(any(User.class));
+    }
+
+    @Test
+    public void delete() {
+        userFacade.delete(user.getId());
+        verify(userService).delete(user.getId());
     }
 
     @Test
