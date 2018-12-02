@@ -40,6 +40,7 @@ public class UserFacadeImpl implements UserFacade{
     public long createUser(UserDTO user, String plainPassword) {
         User usr = mapper.mapTo(user, User.class);
         userService.createUser(usr, plainPassword);
+        usr = userService.getByLogin(user.getLogin());
         return usr.getId();
     }
 
