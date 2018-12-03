@@ -24,18 +24,27 @@ public class AuthenticationController extends BaseController {
 
     private final static Logger log = LoggerFactory.getLogger(AuthenticationController.class);
 
+    /**
+     * Login form
+     */
     @RequestMapping(value = WebUris.URL_LOGIN, method = RequestMethod.GET)
-    public String loginGet(Model model) {
+    public String loginGet() {
         log.info("AuthenticationController.loginGet()");
         return "authentication/login";
     }
 
+    /**
+     * Processing of login form
+     */
     @RequestMapping(value = WebUris.URL_LOGIN, method = RequestMethod.POST)
-    public String loginPost(Model model) {
+    public String loginPost() {
         log.info("AuthenticationController.loginPost()");
         return WebUris.URL_LOGIN;
     }
 
+    /**
+     * Logout user from application
+     */
     @RequestMapping(value = WebUris.URL_LOGOUT, method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         log.info("LogoutController.logout()");

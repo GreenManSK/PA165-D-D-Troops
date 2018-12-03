@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController extends BaseController {
     private final static Logger log = LoggerFactory.getLogger(HomeController.class);
 
+    /**
+     * Home page
+     */
     @RequestMapping(value = WebUris.URL_HOME, method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home() {
         log.info("HomeController.home()");
         return "home/home";
     }
