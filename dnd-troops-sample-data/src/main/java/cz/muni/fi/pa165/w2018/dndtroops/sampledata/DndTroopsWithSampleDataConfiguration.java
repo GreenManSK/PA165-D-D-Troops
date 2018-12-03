@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 /**
  * Class DndTroopsWithSampleDataConfiguration
@@ -19,12 +20,13 @@ import javax.annotation.PostConstruct;
 public class DndTroopsWithSampleDataConfiguration {
     final static Logger log = LoggerFactory.getLogger(DndTroopsWithSampleDataConfiguration.class);
 
-    //TODO: add autowired SampleDataLoadingFacade
+    @Inject
+    private SampleDataLoadingFacade loadingFacade;
 
     @PostConstruct
     public void dataLoading() {
         log.debug("sample data loading");
-        //TODO: load data
+        loadingFacade.loadData();
         log.debug("sample data loaded");
     }
 }
