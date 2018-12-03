@@ -15,7 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
-import javax.validation.constraints.Null;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,7 +83,7 @@ public class UserServiceImplTest extends AbstractTestNGSpringContextTests {
             usr.setId(20L);
             return null;
         }).when(userDao).create(user2);
-        userService.createUser(user2,password);
+        userService.create(user2,password);
         verify(userDao).create(user2);
         assertNotNull(user2.getId());
     }
@@ -92,17 +91,17 @@ public class UserServiceImplTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = NullPointerException.class)
     public void createNull() {
         doThrow(new NullPointerException()).when(userDao).create(null);
-        userService.createUser(null,password);
+        userService.create(null,password);
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void createNullPassword() {
-        userService.createUser(user, null);
+        userService.create(user, null);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void createEmptyPassword() {
-        userService.createUser(user,"");
+        userService.create(user,"");
     }
 
     @Test
@@ -169,13 +168,13 @@ public class UserServiceImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void authenticateSuccess() {
-        userService.createUser(user, password);
+        userService.create(user, password);
         assertTrue(userService.authenticate(user, password));
     }
 
     @Test
     public void authenticateFailure() {
-        userService.createUser(user, password);
+        userService.create(user, password);
         assertFalse(userService.authenticate(user,password + "something"));
     }
 

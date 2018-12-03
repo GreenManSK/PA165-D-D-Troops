@@ -31,8 +31,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import static org.testng.Assert.*;
-
 /**
  * Tests for UserFacade implementation
  *
@@ -108,10 +106,15 @@ public class UserFacadeImplTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void create() {
+        doAnswer(invocationOnMock -> {
+            User usr = (User) invocationOnMock.getArguments()[0];
+            usr.setId(20L);
+            return null;
+        }).when(userService).create(user2,password);
         UserDTO userDTO = beanMappingService.mapTo(user2, UserDTO.class);
         when(userService.getByLogin(userDTO.getLogin())).thenReturn(user);
-        userFacade.createUser(userDTO, password);
-        verify(userService).createUser(any(User.class),eq(password));
+        userFacade.create(userDTO, password);
+        verify(userService).create(any(User.class),eq(password));
     }
 
     @Test
@@ -146,14 +149,14 @@ public class UserFacadeImplTest extends AbstractTestNGSpringContextTests {
     public void isAdmin() {
         when(userService.getById(user.getId())).thenReturn(user);
         when(userService.getById(admin.getId())).thenReturn(admin);
-        when(userService.isUser(user)).thenReturn(false);
-        when(userService.isUser(admin)).thenReturn(true);
-        assertFalse(userFacade.isUser(user.getId()));
-        assertTrue(userFacade.isUser(admin.getId()));
+        when(userService.isAdmin(user)).thenReturn(false);
+        when(userService.isAdmin(admin)).thenReturn(true);
+        assertFalse(userFacade.isAdmin(user.getId()));
+        assertTrue(userFacade.isAdmin(admin.getId()));
         verify(userService).getById(user.getId());
         verify(userService).getById(admin.getId());
-        verify(userService).isUser(user);
-        verify(userService).isUser(admin);
+        verify(userService).isAdmin(user);
+        verify(userService).isAdmin(admin);
     }
 
     @Test
