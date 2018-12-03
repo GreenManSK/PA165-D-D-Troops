@@ -38,7 +38,7 @@ public interface UserFacade {
      * @param user          to be created
      * @param plainPassword users password
      */
-    long createUser(UserDTO user, String plainPassword);
+    long create(UserDTO user, String plainPassword);
 
     /**
      * Update given user
@@ -55,18 +55,18 @@ public interface UserFacade {
     void delete(long id);
 
     /**
-     * Checks if user with given id is administrator
+     * Checks if user with given id is regular user
      *
      * @param id of the user
-     * @return true if user is administrator
+     * @return true if user is regular user
      */
     boolean isUser(long id);
 
     /**
-     * Checks if user is regular user
+     * Checks if user with given id is administrator
      *
      * @param id of the user
-     * @return true if user is regular user (not admin)
+     * @return true if user is administrator
      */
     boolean isAdmin(long id);
 

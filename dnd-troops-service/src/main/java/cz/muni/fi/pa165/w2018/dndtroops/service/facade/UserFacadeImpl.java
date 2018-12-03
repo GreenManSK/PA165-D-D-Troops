@@ -37,10 +37,9 @@ public class UserFacadeImpl implements UserFacade{
     }
 
     @Override
-    public long createUser(UserDTO user, String plainPassword) {
+    public long create(UserDTO user, String plainPassword) {
         User usr = mapper.mapTo(user, User.class);
-        userService.createUser(usr, plainPassword);
-        usr = userService.getByLogin(user.getLogin());
+        userService.create(usr, plainPassword);
         return usr.getId();
     }
 

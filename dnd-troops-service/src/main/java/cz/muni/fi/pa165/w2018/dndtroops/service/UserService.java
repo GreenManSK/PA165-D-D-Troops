@@ -12,7 +12,7 @@ public interface UserService {
 
     /**
      * Get user by its id
-     * @param Id of the usee
+     * @param Id of the user
      * @return user or {@code null}, if such user doesnt exist
      */
     User getById(long Id);
@@ -28,7 +28,7 @@ public interface UserService {
      * @param user to register
      * @param plainPassword password of the user
      */
-    void createUser(User user, String plainPassword);
+    void create(User user, String plainPassword);
 
     /**
      * Updates the user
