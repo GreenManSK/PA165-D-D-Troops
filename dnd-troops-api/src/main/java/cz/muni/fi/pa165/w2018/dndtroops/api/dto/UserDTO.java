@@ -21,27 +21,9 @@ public class UserDTO {
     @NotNull
     private UserType type;
 
-    @NotNull
-    private String passwordHash;
-
     private HeroDTO heroDTO;
 
     public UserDTO() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserDTO)) return false;
-        UserDTO userDTO = (UserDTO) o;
-        return Objects.equals(getLogin(), userDTO.getLogin()) &&
-                getType() == userDTO.getType() &&
-                Objects.equals(getPasswordHash(), userDTO.getPasswordHash());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getLogin(), getType(), getPasswordHash());
     }
 
     public String getLogin() {
@@ -60,14 +42,6 @@ public class UserDTO {
         this.type = type;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
     public HeroDTO getHeroDTO() {
         return heroDTO;
     }
@@ -83,6 +57,20 @@ public class UserDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDTO)) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(getLogin(), userDTO.getLogin()) &&
+                getType() == userDTO.getType();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLogin(), getType());
+    }
 
     @Override
     public String toString() {
@@ -91,7 +79,6 @@ public class UserDTO {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", type=" + type +
-                ", passwordHash='" + passwordHash + '\'' +
                 ", hero='"+ name +'\'' +
                 '}';
     }
