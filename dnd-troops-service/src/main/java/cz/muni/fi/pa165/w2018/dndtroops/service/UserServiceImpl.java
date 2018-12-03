@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
      * @param correctHash Correct hash of password.
      * @return True if given password with correctHash match, false otherwise.
      */
-    public static boolean validatePassword(String password, String correctHash) {
+    private static boolean validatePassword(String password, String correctHash) {
         if(password==null) return false;
         if(correctHash==null) throw new IllegalArgumentException("password hash is null");
         String[] params = correctHash.split(":");

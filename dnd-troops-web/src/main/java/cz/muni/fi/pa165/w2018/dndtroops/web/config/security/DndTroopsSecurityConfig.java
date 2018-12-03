@@ -1,6 +1,9 @@
 package cz.muni.fi.pa165.w2018.dndtroops.web.config.security;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.UserDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.facade.UserFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.web.WebUris;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 /**
  * Class DndTroopsSecurityConfig
  *
@@ -23,14 +28,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserFacade userFacade;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password(passwordEncoder().encode("user")).roles("USER")
-                .and()
-                .withUser("user2").password(passwordEncoder().encode("user")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
+        List<UserDTO> users = userFacade.getAll();
+        for (UserDTO user : users) {
+            auth.inMemoryAuthentication()
+                    .passwordEncoder(passwordEncoder)
+                    .withUser(user.getLogin())
+                    .password(user.getLogin())
+                    .roles(userFacade.isAdmin(user.getId()) ? "ADMIN" : "USER");
+        }
     }
 
     @Override

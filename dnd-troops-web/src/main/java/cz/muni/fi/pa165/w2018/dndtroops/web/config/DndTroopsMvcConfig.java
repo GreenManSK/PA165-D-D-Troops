@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.w2018.dndtroops.web.config;
 
 import cz.muni.fi.pa165.w2018.dndtroops.sampledata.DndTroopsWithSampleDataConfiguration;
 import cz.muni.fi.pa165.w2018.dndtroops.web.config.security.DndTroopsSecurityConfig;
+import cz.muni.fi.pa165.w2018.dndtroops.web.config.security.PasswordEncoderImpl;
 import cz.muni.fi.pa165.w2018.dndtroops.web.controllers.ControllersPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -84,6 +86,11 @@ public class DndTroopsMvcConfig implements WebMvcConfigurer {
     public Validator validator() {
         log.debug("registering JSR-303 validator");
         return new LocalValidatorFactoryBean();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoderImpl();
     }
 }
 
