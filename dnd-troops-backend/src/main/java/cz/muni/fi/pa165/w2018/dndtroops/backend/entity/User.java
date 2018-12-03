@@ -33,21 +33,6 @@ public class User {
     @Enumerated
     private UserType type;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(getLogin(), user.getLogin()) &&
-                Objects.equals(getPasswordHash(), user.getPasswordHash()) &&
-                getType() == user.getType();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getLogin(), getPasswordHash(), getType());
-    }
-
     public String getLogin() {
         return login;
     }
@@ -88,9 +73,6 @@ public class User {
         this.id = id;
     }
 
-    public User() {
-    }
-
     public boolean isUser() {
         return getType() == UserType.USER;
     }
@@ -98,4 +80,23 @@ public class User {
     public boolean isAdmin() {
         return getType() == UserType.ADMIN;
     }
+
+    public User() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getLogin(), user.getLogin()) &&
+                Objects.equals(getPasswordHash(), user.getPasswordHash()) &&
+                getType() == user.getType();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLogin(), getPasswordHash(), getType());
+    }
+
 }
