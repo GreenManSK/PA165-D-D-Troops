@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(User user, String plainPassword) {
+    public void create(User user, String plainPassword) {
         if (plainPassword == null) {
             throw new NullPointerException("Plain password cannot be null");
         }
