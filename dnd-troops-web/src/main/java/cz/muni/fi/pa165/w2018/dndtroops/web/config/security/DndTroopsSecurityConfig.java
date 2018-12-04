@@ -85,6 +85,6 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new PasswordEncoderImpl();
     }
 }

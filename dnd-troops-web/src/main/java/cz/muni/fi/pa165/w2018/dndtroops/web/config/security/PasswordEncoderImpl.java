@@ -25,10 +25,14 @@ public class PasswordEncoderImpl implements PasswordEncoder {
     }
 
     @Override
-    public boolean matches(CharSequence login, String password) {
+    public boolean matches(CharSequence password, String login) {
         UserAuthenticateDTO userAuthenticateDTO = new UserAuthenticateDTO();
-        userAuthenticateDTO.setLogin(login.toString());
-        return userFacade.authenticateUser(userAuthenticateDTO, password);
+        userAuthenticateDTO.setLogin(login);
+        try {
+            return userFacade.authenticateUser(userAuthenticateDTO, password.toString());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
 }
