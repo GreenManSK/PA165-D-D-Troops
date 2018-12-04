@@ -22,7 +22,7 @@ import java.util.Set;
 @Transactional
 public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
-    final static Logger logger = LoggerFactory.getLogger(SampleDataLoadingFacadeImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(SampleDataLoadingFacadeImpl.class);
 
     @Inject
     private TroopService troopService;

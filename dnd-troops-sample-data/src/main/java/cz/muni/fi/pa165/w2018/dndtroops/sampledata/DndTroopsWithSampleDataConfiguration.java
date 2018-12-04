@@ -19,7 +19,7 @@ import javax.inject.Inject;
 @Import(ServiceConfiguration.class)
 @ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
 public class DndTroopsWithSampleDataConfiguration {
-    final static Logger log = LoggerFactory.getLogger(DndTroopsWithSampleDataConfiguration.class);
+    private final static Logger log = LoggerFactory.getLogger(DndTroopsWithSampleDataConfiguration.class);
 
     @Inject
     private SampleDataLoadingFacade loadingFacade;
