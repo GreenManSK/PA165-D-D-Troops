@@ -38,7 +38,7 @@ public class TroopController {
         return troop;
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final List<TroopDTO> getByName(@PathVariable("name") String name) {
         logger.debug("REST getByName({})", name);
         if (name == null) {
@@ -79,7 +79,7 @@ public class TroopController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public final void delete(@PathVariable("id") Long id) {
         logger.debug("REST delete({})", id);
         if (id == null || id < 0) {

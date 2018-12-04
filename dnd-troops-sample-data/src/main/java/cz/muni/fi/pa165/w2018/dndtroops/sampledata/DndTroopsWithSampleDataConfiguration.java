@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.w2018.dndtroops.sampledata;
 import cz.muni.fi.pa165.w2018.dndtroops.service.configuration.ServiceConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -16,7 +17,7 @@ import javax.inject.Inject;
  */
 @Configuration
 @Import(ServiceConfiguration.class)
-//@ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class}) TODO: uncomment when implemented
+@ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
 public class DndTroopsWithSampleDataConfiguration {
     final static Logger log = LoggerFactory.getLogger(DndTroopsWithSampleDataConfiguration.class);
 
