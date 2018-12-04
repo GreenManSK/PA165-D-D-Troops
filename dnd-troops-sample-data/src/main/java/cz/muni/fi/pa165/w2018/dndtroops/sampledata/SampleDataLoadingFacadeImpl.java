@@ -1,14 +1,9 @@
 package cz.muni.fi.pa165.w2018.dndtroops.sampledata;
 
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Troop;
+import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.*;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.enums.Race;
-import cz.muni.fi.pa165.w2018.dndtroops.service.GroupService;
-import cz.muni.fi.pa165.w2018.dndtroops.service.HeroService;
-import cz.muni.fi.pa165.w2018.dndtroops.service.RoleService;
-import cz.muni.fi.pa165.w2018.dndtroops.service.TroopService;
+import cz.muni.fi.pa165.w2018.dndtroops.backend.enums.UserType;
+import cz.muni.fi.pa165.w2018.dndtroops.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -40,6 +35,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     @Inject
     private GroupService groupService;
+
+    @Inject
+    private UserService userService;
 
 
     @Override
@@ -126,6 +124,10 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Group group5 = group("The Group That No One Wants to Join", heroes);
         logger.debug("Groups loaded");
 
+        User admin = user("admin", "adminpassword", UserType.ADMIN);
+        User user1 = user("user1", "user1password", UserType.USER);
+        User user2 = user("user1", "user2password", UserType.USER);
+        logger.debug("Users loaded");
     }
 
     /* helper methods for the creation of instances */
@@ -170,4 +172,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         groupService.create(group);
         return group;
     }
+
+    private User user(String login, String password, UserType userType) {
+        User user = new User();
+        user.setLogin(login);
+        user.setPasswordHash(password);
+        user.setType(userType);
+        userService.create(user, password);
+        return user;
+    }
+
 }
