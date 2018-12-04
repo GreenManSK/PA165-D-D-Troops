@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(RestUris.ROOT_URL_TROOP)
 public class TroopController {
 
-    final static Logger logger = LoggerFactory.getLogger(TroopController.class);
+    private final static Logger logger = LoggerFactory.getLogger(TroopController.class);
 
     @Inject
     private TroopFacade troopFacade;
@@ -79,7 +79,7 @@ public class TroopController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public final void delete(@PathVariable("id") Long id) {
         logger.debug("REST delete({})", id);
         if (id == null || id < 0) {
