@@ -21,7 +21,7 @@ public class UserDTO {
     @NotNull
     private UserType type;
 
-    private HeroDTO heroDTO;
+    private HeroDTO hero;
 
     public UserDTO() {
     }
@@ -42,12 +42,12 @@ public class UserDTO {
         this.type = type;
     }
 
-    public HeroDTO getHeroDTO() {
-        return heroDTO;
+    public HeroDTO getHero() {
+        return hero;
     }
 
-    public void setHeroDTO(HeroDTO heroDTO) {
-        this.heroDTO = heroDTO;
+    public void setHero(HeroDTO hero) {
+        this.hero = hero;
     }
 
     public Long getId() {
@@ -74,7 +74,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        String name = heroDTO == null ? "NULL" : heroDTO.getName();
+        String name = hero == null ? "NULL" : hero.getName();
         return "UserDTO{" +
                 "id=" + id +
                 ", login='" + login + '\'' +

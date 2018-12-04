@@ -26,7 +26,6 @@ public class User {
     private String passwordHash;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hero_id")
     private Hero hero;
 
     @NotNull
