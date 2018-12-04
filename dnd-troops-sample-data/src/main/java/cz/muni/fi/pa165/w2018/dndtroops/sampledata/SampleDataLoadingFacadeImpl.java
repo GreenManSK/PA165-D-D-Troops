@@ -126,7 +126,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         User admin = user("admin", "adminpassword", UserType.ADMIN);
         User user1 = user("user1", "user1password", UserType.USER);
-        User user2 = user("user1", "user2password", UserType.USER);
+        User user2 = user("user2", "user2password", UserType.USER);
+        user1.setHero(hero5);
+        user2.setHero(hero6);
         logger.debug("Users loaded");
     }
 
