@@ -151,13 +151,15 @@ public class HeroFacadeImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void search() {
         HeroSearchDTO heroSearchDTO = new HeroSearchDTO();
-        heroSearchDTO.setRole(beanMappingService.mapTo(role, RoleDTO.class));
+        heroSearchDTO.setRoleId(role.getId());
         heroSearchDTO.setRace(cz.muni.fi.pa165.w2018.dndtroops.api.enums.Race.ELF);
         heroSearchDTO.setFromExperience(0L);
         heroSearchDTO.setToExperience(20L);
         when(heroService.search(role, Race.ELF, 0L, 20L)).thenReturn(Arrays.asList(hero4));
+        when(roleService.getById(role.getId())).thenReturn(role);
         List<HeroDTO> heroDTOs = heroFacade.search(heroSearchDTO);
         verify(heroService).search(role,Race.ELF, 0L, 20L);
+        verify(roleService).getById(role.getId());
         assertEquals(1,heroDTOs.size());
         assertTrue(heroDTOs.contains(beanMappingService.mapTo(hero4,HeroDTO.class)));
     }
