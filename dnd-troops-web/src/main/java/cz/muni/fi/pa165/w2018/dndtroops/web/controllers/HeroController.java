@@ -1,9 +1,6 @@
 package cz.muni.fi.pa165.w2018.dndtroops.web.controllers;
 
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroChangeDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroSearchDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.RoleDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.*;
 import cz.muni.fi.pa165.w2018.dndtroops.api.enums.Race;
 import cz.muni.fi.pa165.w2018.dndtroops.api.facade.GroupFacade;
 import cz.muni.fi.pa165.w2018.dndtroops.api.facade.HeroFacade;
@@ -138,6 +135,11 @@ public class HeroController extends BaseController {
     @RequestMapping(value = {"/{id}/update"}, method = RequestMethod.GET)
     public String update(@PathVariable Long id, Model model) {
         log.debug("update({})", id);
+
+        if (isUser() && !getUserDTO().getHero().getId().equals(id)) {
+            return "redirect:" + WebUris.NOT_FOUND;
+        }
+
         HeroDTO hero = heroFacade.getById(id);
         if (hero == null) {
             return "redirect:" + WebUris.NOT_FOUND;
@@ -171,6 +173,11 @@ public class HeroController extends BaseController {
             RedirectAttributes redirectAttributes
     ) {
         log.debug("updatePost({}, {})", id, hero);
+
+        if (isUser() && !getUserDTO().getHero().getId().equals(id)) {
+            return "redirect:" + WebUris.NOT_FOUND;
+        }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute(
                     "flashMessage",
@@ -187,12 +194,22 @@ public class HeroController extends BaseController {
         return "redirect:" + WebUris.URL_HERO + "/all";
     }
 
+    @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
+    public String user() {
+        log.debug("user()");
+        UserDTO userDTO = getUserDTO();
+        if (userDTO.getHero() == null) {
+            return "redirect:" + WebUris.NOT_FOUND;
+        }
+        return "redirect:" + WebUris.URL_HERO + "/" + userDTO.getHero().getId();
+    }
+
     /**
      * Show hero detail
      *
      * @param id id of the hero
      */
-    @RequestMapping(value = {"{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     public String detail(@PathVariable Long id, Model model) {
         log.debug("detail({})", id);
         HeroDTO hero = heroFacade.getById(id);

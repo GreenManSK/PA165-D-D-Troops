@@ -1,7 +1,10 @@
 package cz.muni.fi.pa165.w2018.dndtroops.web.controllers;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.UserDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.facade.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class BaseController {
 
     private final static Logger log = LoggerFactory.getLogger(BaseController.class);
+
+    @Autowired
+    private UserFacade userFacade;
 
     /**
      * Initialize String trimming binder.
@@ -61,12 +67,24 @@ public abstract class BaseController {
     }
 
     @ModelAttribute("isAdmin")
-    public boolean isAdmin(HttpServletRequest request) {
-        return request.isUserInRole("ADMIN");
+    public boolean isAdmin() {
+        UserDTO userDTO = getUserDTO();
+        return userDTO != null && userFacade.isAdmin(userDTO.getId());
     }
 
     @ModelAttribute("isUser")
-    public boolean isUser(HttpServletRequest request) {
-        return request.isUserInRole("USER");
+    public boolean isUser() {
+        UserDTO userDTO = getUserDTO();
+        return userDTO != null && userFacade.isUser(userDTO.getId());
+    }
+
+    /**
+     * Returns UserDTO object for authenticated user. Identity of user is determined by his login.
+     *
+     * @return UserDTO objects.
+     */
+    @ModelAttribute("getUserDTO")
+    public UserDTO getUserDTO() {
+        return userFacade.getByLogin(getLogin());
     }
 }

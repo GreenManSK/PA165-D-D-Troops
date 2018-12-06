@@ -1,14 +1,8 @@
 package cz.muni.fi.pa165.w2018.dndtroops.service.configuration;
 
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.GroupDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.HeroDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.RoleDTO;
-import cz.muni.fi.pa165.w2018.dndtroops.api.dto.TroopDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.*;
 import cz.muni.fi.pa165.w2018.dndtroops.backend.DndTroopsApplicationContext;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Group;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Hero;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Role;
-import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.Troop;
+import cz.muni.fi.pa165.w2018.dndtroops.backend.entity.*;
 import cz.muni.fi.pa165.w2018.dndtroops.service.HeroServiceImpl;
 import cz.muni.fi.pa165.w2018.dndtroops.service.facade.HeroFacadeImpl;
 import org.dozer.DozerBeanMapper;
@@ -42,6 +36,7 @@ public class ServiceConfiguration {
             mapping(Role.class, RoleDTO.class);
             mapping(Group.class, GroupDTO.class);
             mapping(Troop.class, TroopDTO.class);
+            mapping(User.class, UserDTO.class);
         }
     }
 }
