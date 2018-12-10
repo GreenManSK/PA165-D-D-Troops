@@ -93,7 +93,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/roles/all">
+                <a class="nav-link" href="${pageContext.request.contextPath}/role/all">
                     <i class="fas fa-fw fa-dice-d20"></i>
                     <span>
                         <f:message key="navigation.roles"/>
