@@ -37,21 +37,23 @@ public class RoleController extends BaseController {
     private RoleFacade roleFacade;
 
 
-    @RequestMapping(value = "/all", method = RequestMethod.POST)
+    @RequestMapping(value = "/search/name", method = RequestMethod.POST)
     public String searchName(
             @ModelAttribute("search") @Valid SearchNameDTO search,
             BindingResult bindingResult,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
         log.debug("searchName({})",search);
+        System.out.println("HERE");
         if (bindingResult.hasErrors()) {
-            model.addAttribute(
+            redirectAttributes.addFlashAttribute(
                     "flashMessage",
                     new FlashMessage("role.search.problem",FlashMessageType.ERROR));
         }
         else {
             RoleDTO roleDTO = roleFacade.getByName(search.getName());
             if (roleDTO == null) {
-                model.addAttribute(
+                redirectAttributes.addFlashAttribute(
                         "flashMessage",
                         new FlashMessage("role.search.not.found",FlashMessageType.ERROR));
             }
@@ -59,10 +61,7 @@ public class RoleController extends BaseController {
                 return "redirect:" + WebUris.URL_ROLE + "/" + roleDTO.getId();
             }
         }
-        List<RoleDTO> roles = roleFacade.getAll();
-        model.addAttribute("roles",roles);
-        model.addAttribute("search", new SearchNameDTO());
-        return "/" + WebUris.URL_ROLE + "/all";
+        return "redirect:" + WebUris.URL_ROLE + "/all";
     }
 
     @RequestMapping(value = {"","/","/all"},method = RequestMethod.GET)
