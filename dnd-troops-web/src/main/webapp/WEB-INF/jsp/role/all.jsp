@@ -10,7 +10,7 @@
     <jsp:attribute name="body">
         <h1><fmt:message key="role.all.title"/></h1>
 
-        <form:form method="post" action="${pageContext.request.contextPath}/role/all" modelAttribute="search" id="searchRoleName">
+        <form:form method="post" action="${pageContext.request.contextPath}/role/search/name" modelAttribute="search" id="searchRoleName">
                 <div class="form-group col-md-3">
                     <form:label path="name">
                         <fmt:message key="role.name"/>
