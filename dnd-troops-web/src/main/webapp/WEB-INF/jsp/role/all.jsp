@@ -10,16 +10,16 @@
     <jsp:attribute name="body">
         <h1><fmt:message key="role.all.title"/></h1>
 
-        <form:form method="get" action="${pageContext.request.contextPath}/role/all" modelAttribute="byName">
-            <div class="form-group">
-                <form:label path="name">
-                    <fmt:message key="role.name"/>
-                </form:label>
-                <form:input path="name"/>
-                <button class="btn btn-primary" type="submit">
-                    <fmt:message key="role.search"/>
-                </button>
-            </div>
+        <form:form method="post" action="${pageContext.request.contextPath}/role/all" modelAttribute="search" id="searchRoleName">
+                <div class="form-group col-md-3">
+                    <form:label path="name">
+                        <fmt:message key="role.name"/>
+                    </form:label>
+                    <form:input path="name"/>
+                    <button class="btn btn-primary" type="submit">
+                        <fmt:message key="role.search"/>
+                    </button>
+                </div>
         </form:form>
 
         <div class="table-responsive">
