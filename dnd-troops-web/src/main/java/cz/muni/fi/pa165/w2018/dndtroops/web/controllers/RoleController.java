@@ -44,7 +44,6 @@ public class RoleController extends BaseController {
             Model model,
             RedirectAttributes redirectAttributes) {
         log.debug("searchName({})",search);
-        System.out.println("HERE");
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute(
                     "flashMessage",
@@ -89,7 +88,7 @@ public class RoleController extends BaseController {
             Model model,
             RedirectAttributes redirectAttributes
     ) {
-        log.debug("createPost{()}",role);
+        log.debug("createPost({})",role);
         if (bindingResult.hasErrors()) {
             model.addAttribute(
                     "flashMessage",
