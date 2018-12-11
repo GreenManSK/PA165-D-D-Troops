@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.w2018.dndtroops.web.controllers;
 
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.SearchMissionDTO;
+import cz.muni.fi.pa165.w2018.dndtroops.api.dto.SearchNameDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.TroopChangeDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.dto.TroopDTO;
 import cz.muni.fi.pa165.w2018.dndtroops.api.facade.TroopFacade;
@@ -43,37 +45,59 @@ public class TroopController extends BaseController {
 	public String all(Model model) {
 		log.debug("all()");
 		List<TroopDTO> troops = troopFacade.getAll();
-		model.addAttribute("troops", troops);
-
-		return "/troop/all";
+		return addAttributes(model, troops, "");
 	}
 
 	/**
 	 * Show list of troops specified by name
-	 *
-	 * @param name String
 	 */
-	@RequestMapping(value = {"/findByName/{name}"}, method = RequestMethod.GET)
-	public String findByName(Model model, @PathVariable String name) {
-		log.debug("findByName(" + name + ")");
-		List<TroopDTO> troops = troopFacade.getAllByName(name);
-		model.addAttribute("troops", troops);
-
-		return "/troop/findByName";
+	@RequestMapping(value = {"/findByName"}, method = RequestMethod.POST)
+	public String findByName(@ModelAttribute("search") @Valid SearchNameDTO name,
+							 Model model,
+							 BindingResult bindingResult,
+							 RedirectAttributes redirectAttributes) {
+		log.debug("findByName({})", name);
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute(
+					"flashMessage",
+					new FlashMessage("troop.search.problem", FlashMessageType.ERROR));
+		} else {
+			List<TroopDTO> troopDTOs = troopFacade.getAllByName(name.getName());
+			if (troopDTOs.isEmpty()) {
+				redirectAttributes.addFlashAttribute(
+						"flashMessage",
+						new FlashMessage("troop.search.not.found", FlashMessageType.ERROR));
+			} else {
+				return addAttributes(model, troopDTOs, " name: " + name.getName());
+			}
+		}
+		return "redirect:" + WebUris.URL_TROOP + "/all";
 	}
 
 	/**
 	 * Show list of troops specified by mission
-	 *
-	 * @param mission String
 	 */
-	@RequestMapping(value = {"/findByMission/{mission}"}, method = RequestMethod.GET)
-	public String findByMission(Model model, @PathVariable String mission) {
-		log.debug("findByMission(" + mission + ")");
-		List<TroopDTO> troops = troopFacade.getAllByMission(mission);
-		model.addAttribute("troops", troops);
-
-		return "/troop/findByMission";
+	@RequestMapping(value = {"/findByMission"}, method = RequestMethod.POST)
+	public String findByMission(@ModelAttribute("searchMission") @Valid SearchMissionDTO mission,
+								Model model,
+								BindingResult bindingResult,
+								RedirectAttributes redirectAttributes) {
+		log.debug("findByMission({})", mission);
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute(
+					"flashMessage",
+					new FlashMessage("troop.search.problem", FlashMessageType.ERROR));
+		} else {
+			List<TroopDTO> troopDTOs = troopFacade.getAllByMission(mission.getMission());
+			if (troopDTOs.isEmpty()) {
+				redirectAttributes.addFlashAttribute(
+						"flashMessage",
+						new FlashMessage("troop.search.not.found", FlashMessageType.ERROR));
+			} else {
+				return addAttributes(model, troopDTOs, " mission: " + mission.getMission());
+			}
+		}
+		return "redirect:" + WebUris.URL_TROOP + "/all";
 	}
 
 	/**
@@ -172,7 +196,7 @@ public class TroopController extends BaseController {
 	 *
 	 * @param id id of the troop
 	 */
-	@RequestMapping(value = {"{id}/delete"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/{id}/delete"}, method = RequestMethod.GET)
 	public String delete(
 			@PathVariable Long id,
 			RedirectAttributes redirectAttributes
@@ -194,4 +218,23 @@ public class TroopController extends BaseController {
 		return "redirect:" + WebUris.URL_TROOP + "/all";
 	}
 
+	@RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
+	public String detail(@PathVariable Long id, Model model) {
+		log.debug("detail({})", id);
+		TroopDTO troop = troopFacade.getById(id);
+		if (troop == null) {
+			return "redirect:" + WebUris.NOT_FOUND;
+		}
+		model.addAttribute("troop", troop);
+		return "/troop/detail";
+	}
+
+	private String addAttributes(Model model, List<TroopDTO> list, String latestSearch) {
+		model.addAttribute("troops", list);
+		model.addAttribute("search", new SearchNameDTO());
+		model.addAttribute("searchMission", new SearchMissionDTO());
+		model.addAttribute("latestSearch", latestSearch);
+
+		return "/troop/all";
+	}
 }

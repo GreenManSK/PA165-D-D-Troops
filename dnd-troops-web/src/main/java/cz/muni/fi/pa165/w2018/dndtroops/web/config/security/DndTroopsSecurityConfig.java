@@ -68,6 +68,15 @@ public class DndTroopsSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(WebUris.URL_ROLE + "/*/delete").hasAnyRole("ADMIN")
                 .antMatchers(WebUris.URL_ROLE + "/**").hasAnyRole("ADMIN")
 
+                //Troop controller
+                .antMatchers(WebUris.URL_TROOP + "/").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/all").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/findByName/*").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/findByMission/*").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/create").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/*/update").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/*/delete").hasAnyRole("ADMIN")
+                .antMatchers(WebUris.URL_TROOP + "/**").hasAnyRole("ADMIN")
 
                 // Others
                 .antMatchers(WebUris.URL_LOGIN + "*").permitAll()
