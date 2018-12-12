@@ -72,6 +72,7 @@ public class HeroServiceImpl implements HeroService {
     public void delete(long id) {
         Hero hero = heroDao.getById(id);
         if (hero != null) {
+            hero.setGroup(null);
             heroDao.remove(hero);
         }
     }
