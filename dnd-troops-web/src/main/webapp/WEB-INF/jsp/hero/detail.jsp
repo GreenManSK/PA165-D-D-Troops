@@ -10,9 +10,12 @@
 
     <h1><c:out value="${hero.name}"/></h1>
 
+    <c:if test="${isAdmin || hero.equals(getUserDTO.hero)}">
     <a href="${pageContext.request.contextPath}/hero/${hero.id}/update" class="btn btn-primary">
         <i class="fas fa-edit"></i>
-    </a><br>
+    </a>
+    </c:if>
+    <br>
 
     <strong><fmt:message key="hero.experience"/>:</strong>
     <c:out value="${hero.experience}"/>
