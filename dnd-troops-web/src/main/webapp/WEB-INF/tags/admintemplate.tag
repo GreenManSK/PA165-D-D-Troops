@@ -68,7 +68,7 @@
                             </li>
             </c:if>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/groups/all">
+                <a class="nav-link" href="${pageContext.request.contextPath}/group/all">
                     <i class="fas fa-fw fa-users-cog"></i>
                     <span>
                         <f:message key="navigation.groups"/>
