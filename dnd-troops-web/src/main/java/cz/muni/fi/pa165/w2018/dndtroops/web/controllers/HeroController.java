@@ -44,8 +44,6 @@ public class HeroController extends BaseController {
     @Autowired
     private GroupFacade groupFacade;
 
-    //TODO: User hero, user edit
-
     /**
      * Show list of all heroes
      */
@@ -191,7 +189,7 @@ public class HeroController extends BaseController {
                 "flashMessage",
                 new FlashMessage("hero.update.success", FlashMessageType.SUCCESS));
 
-        return "redirect:" + WebUris.URL_HERO + "/all";
+        return "redirect:" + WebUris.URL_HERO + (isUser() ? "/" + hero.getId() :  "/all");
     }
 
     @RequestMapping(value = {"/user"}, method = RequestMethod.GET)
