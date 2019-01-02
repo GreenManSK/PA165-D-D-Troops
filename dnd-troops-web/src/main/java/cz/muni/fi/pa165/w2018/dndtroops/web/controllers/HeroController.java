@@ -148,7 +148,7 @@ public class HeroController extends BaseController {
         heroChangeDTO.setName(hero.getName());
         heroChangeDTO.setExperience(hero.getExperience());
         heroChangeDTO.setRace(hero.getRace());
-        heroChangeDTO.setGroupId(hero.getGroup().getId());
+        heroChangeDTO.setGroupId(hero.getGroup() != null ? hero.getGroup().getId() : null);
         heroChangeDTO.setRoleIds(hero.getRoles().stream().map(RoleDTO::getId).collect(Collectors.toList()));
 
         model.addAttribute("update", true);

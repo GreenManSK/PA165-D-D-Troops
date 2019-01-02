@@ -59,6 +59,9 @@
         <div class="form-group">
             <form:label path="groupId"><fmt:message key="hero.group"/> </form:label>
             <form:select path="groupId" cssClass="form-control">
+                <form:option value="0">
+                    <fmt:message key="hero.group.none"/>
+                </form:option>
                 <c:forEach items="${groups}" var="group">
                     <form:option value="${group.id}">
                         <c:out value="${group.name}"/>
